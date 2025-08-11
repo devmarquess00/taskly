@@ -9,14 +9,25 @@ import { FaClipboardList } from "react-icons/fa6"
 import Link from "next/link"
 
 import { useTogglePassword } from "@/hooks/useTogglePassword"
+import { useState } from "react";
 
 export default function Login () {
   const { onTogglePassword, showPassword } = useTogglePassword();
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [messageError, setMessageError] = useState('');
+
+  async function handleLoginUser () {
+    
+  }
+
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-none md:bg-[url('/background.png')]
     md:bg-cover md:bg-center md:bg-no-repeat">
-      <form className="shadow-md py-5 px-10 md:max-w-sm w-full h-screen md:h-full">
+      <form className="shadow-md py-5 px-10 md:max-w-sm w-full h-screen md:h-full"
+      onSubmit={handleLoginUser}
+      >
         <div className="flex items-center justify-center gap-2 mb-3 mt-13 md:mt-0">
           <div className="bg-blue-600 p-2 rounded-md">
             <FaClipboardList 
@@ -39,6 +50,10 @@ export default function Login () {
           placeholder="Entre com seu e-mail"
           label="E-mail"
           extraClass="border border-zinc-500 rounded-sm focus:border-blue-600"
+          value={email}
+          onChange={(event) => {
+            setEmail(event.target.value)
+          }}
           />
 
           <InputPassword
@@ -48,9 +63,14 @@ export default function Login () {
           placeholder="Entre com sua senha"
           label="Senha"
           extraClass="border border-zinc-500 rounded-sm focus:border-blue-600"
+          value={password}
+          onChange={(event) => {
+            setPassword(event.target.value)
+          }}
           />
 
           <Button
+          type="submit"
           label="Continuar"
           extraClass="bg-blue-600 py-2 px-3 rounded-sm text-white text-sm mt-2"
           />

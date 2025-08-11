@@ -4,6 +4,8 @@ type InputProps = {
     type: string;
     placeholder?: string;
     extraClass?: string;
+    value?: string;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input = ({
@@ -11,7 +13,9 @@ export const Input = ({
     extraClassLabel,
     type,
     placeholder,
-    extraClass
+    extraClass,
+    value,
+    onChange
 }: InputProps) => {
     return (
         <div className="flex flex-col gap-1">
@@ -20,6 +24,8 @@ export const Input = ({
             type={type}
             placeholder={placeholder}
             className={`py-2.5 px-2 text-xs outline-none ${extraClass}`}
+            value={value}
+            onChange={onChange}
             />
         </div>
     )

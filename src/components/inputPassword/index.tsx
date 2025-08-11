@@ -8,6 +8,8 @@ type InputPasswordProps = {
     extraClass?: string;
     showPassword?: boolean;
     onTogglePassword?: () => void;
+    value?: string;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputPassword = ({
@@ -17,7 +19,9 @@ export const InputPassword = ({
     placeholder,
     extraClass,
     showPassword,
-    onTogglePassword
+    onTogglePassword,
+    value,
+    onChange
 }: InputPasswordProps) => {
     return (
         <div className="flex flex-col gap-1 relative">
@@ -26,6 +30,8 @@ export const InputPassword = ({
             type={showPassword ? 'text': 'password'}
             placeholder={placeholder}
             className={`py-2.5 px-2 text-xs outline-none ${extraClass}`}
+            value={value}
+            onChange={onChange}
             />
 
             <button

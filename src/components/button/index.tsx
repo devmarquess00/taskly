@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 type ButtonProps = {
+    type: any;
     label?: ReactNode;
     icon?: ReactNode;
     extraClass?: string;
@@ -11,10 +12,11 @@ export const Button = ({
     label,
     extraClass, 
     icon,
-    onClick
+    onClick,
+    type
 }: ButtonProps) => {
     return (
-        <button onClick={onClick} className={`cursor-pointer flex items-center ${extraClass}`}>
+        <button type={type} onClick={onClick} className={`cursor-pointer flex items-center justify-center ${extraClass}`}>
         <span className='!ml-0'>{icon}</span>
         {label}</button>
     )
