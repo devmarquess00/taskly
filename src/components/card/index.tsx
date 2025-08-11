@@ -1,0 +1,25 @@
+import { FaEye } from "react-icons/fa6";
+import { Button } from "../button";
+
+type CardProps = {
+    titleCard?: string;
+    extraClassTitleCard?: string;
+}
+
+export const Card = ({
+    titleCard,
+    extraClassTitleCard,
+}: CardProps) => {
+    return (
+        <div className='w-full'>
+            <div className="bg-gray-700 w-full p-10 rounded-t-lg"></div>
+            <div className="flex items-center justify-between py-2 px-3 rounded-b-lg bg-gray-950/50">
+                <p className={extraClassTitleCard}>{titleCard}</p>
+                <Button
+                extraClass="text-white text-lg"
+                label={<FaEye />}
+                />
+            </div>
+        </div>
+    )
+}
