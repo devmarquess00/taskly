@@ -24,8 +24,8 @@ export default function HeaderBoards ({
             </div>
             <Button
             label="Criar novo"
-            icon={<FaPlus className="ml-3 font-semibold" />}
-            extraClass="bg-blue-600 text-white text-xs py-2 px-5 rounded-sm"
+            icon={<FaPlus className="font-semibold" />}
+            extraClass="bg-blue-600 text-white text-xs py-2 px-3 rounded-sm flex items-center justify-center gap-3"
             onClick={onClick}
             />
         </header>

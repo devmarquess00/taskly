@@ -14,6 +14,8 @@ export const Button = ({
     onClick
 }: ButtonProps) => {
     return (
-        <button onClick={onClick} className={`cursor-pointer flex items-center ${extraClass}`}>{label} {icon}</button>
+        <button onClick={onClick} className={`cursor-pointer flex items-center ${extraClass}`}>
+        <span className='!ml-0'>{icon}</span>
+        {label}</button>
     )
 }
