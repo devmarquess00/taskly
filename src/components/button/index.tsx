@@ -6,6 +6,7 @@ type ButtonProps = {
     icon?: ReactNode;
     extraClass?: string;
     onClick?: () => void;
+    isLoading?: boolean;
 }
 
 export const Button = ({
@@ -13,11 +14,12 @@ export const Button = ({
     extraClass, 
     icon,
     onClick,
-    type
+    type,
+    isLoading
 }: ButtonProps) => {
     return (
         <button type={type} onClick={onClick} className={`cursor-pointer flex items-center justify-center ${extraClass}`}>
         <span className='!ml-0'>{icon}</span>
-        {label}</button>
+        {isLoading ? 'Carregando...' : label}</button>
     )
 }

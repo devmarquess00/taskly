@@ -7,20 +7,19 @@ import { Title } from "@/components/title"
 import { Subtitle } from "@/components/subtitle"
 import { FaClipboardList } from "react-icons/fa6"
 import Link from "next/link"
-
 import { useTogglePassword } from "@/hooks/useTogglePassword"
-import { useState } from "react";
+import { useLoginUser } from "@/hooks/useLoginUser";
 
 export default function Login () {
   const { onTogglePassword, showPassword } = useTogglePassword();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [messageError, setMessageError] = useState('');
-
-  async function handleLoginUser () {
-    
-  }
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    isLoading,
+    handleLoginUser
+  } = useLoginUser();
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-none md:bg-[url('/background.png')]
@@ -51,9 +50,7 @@ export default function Login () {
           label="E-mail"
           extraClass="border border-zinc-500 rounded-sm focus:border-blue-600"
           value={email}
-          onChange={(event) => {
-            setEmail(event.target.value)
-          }}
+          onChange={(event) => setEmail(event.target.value)}
           />
 
           <InputPassword
@@ -64,15 +61,14 @@ export default function Login () {
           label="Senha"
           extraClass="border border-zinc-500 rounded-sm focus:border-blue-600"
           value={password}
-          onChange={(event) => {
-            setPassword(event.target.value)
-          }}
+          onChange={(event) => setPassword(event.target.value)}
           />
 
           <Button
           type="submit"
           label="Continuar"
           extraClass="bg-blue-600 py-2 px-3 rounded-sm text-white text-sm mt-2"
+          isLoading={isLoading}
           />
 
         </div>

@@ -13,49 +13,27 @@ import Link from "next/link"
 import { useRouter } from 'next/navigation'
 
 import { useTogglePassword } from "@/hooks/useTogglePassword"
-import { FormEvent, useState } from "react";
+import { useRegisterUser } from "@/hooks/useRegisterUser";
 
-export default function Login () {
+export default function Register () {
   const { onTogglePassword, showPassword } = useTogglePassword();
-  const route = useRouter();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [checkbox, setCheckbox] = useState(false);
-  const [messageError, setMessageError] = useState('');
-
-  async function handleCreateUser (event: FormEvent) {
-    event.preventDefault();
-
-    if (!email || !password) {
-      setMessageError('Preencha todos os campos para continuar.');
-      return;
-    }
-
-    if (!checkbox) {
-      setMessageError('Por favor, aceite os termos para prosseguir!');
-      return;
-    };
-
-    await createUserWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      setEmail('');
-      setPassword('');
-      
-      setTimeout(() => {
-        route.push('/login')
-      }, 2000)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    checkbox, 
+    setCheckbox,
+    messageError, 
+    setMessageError,
+    handleRegisterUser
+  } = useRegisterUser();
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-none md:bg-[url('/background.png')]
     md:bg-cover md:bg-center md:bg-no-repeat">
       <form className="shadow-md py-5 px-10 md:max-w-sm w-full h-screen md:h-full"
-      onSubmit={handleCreateUser}
+      onSubmit={handleRegisterUser}
       >
         <div className="flex items-center justify-center gap-2 mb-3 mt-13 md:mt-0">
           <div className="bg-blue-600 p-2 rounded-md">
@@ -80,9 +58,7 @@ export default function Login () {
           label="E-mail"
           extraClass="border border-zinc-500 rounded-sm focus:border-blue-600"
           value={email}
-          onChange={(event) => {
-            setEmail(event.target.value)
-          }}
+          onChange={(event) => setEmail(event.target.value)}
           />
 
           <InputPassword
@@ -93,9 +69,7 @@ export default function Login () {
           label="Senha"
           extraClass="border border-zinc-500 rounded-sm focus:border-blue-600"
           value={password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
+          onChange={(event) => setPassword(event.target.value)}
           />
 
           <Checkbox
@@ -107,18 +81,18 @@ export default function Login () {
           }}
           />
 
-          {messageError && (
-            <Subtitle
-            subtitle={messageError}
-            extraClass="text-red-500 !font-medium text-xs"
-            />
-          )}
-
           <Button
           label="Criar conta"
           extraClass="bg-blue-600 py-2 px-3 rounded-sm text-white text-sm mt-2"
           type="submit"
           />
+
+          {messageError && (
+            <Subtitle
+            subtitle={messageError}
+            extraClass="text-red-500 text-xs !font-normal"
+            />
+          )}
 
         </div>
 
