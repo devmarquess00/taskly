@@ -22,7 +22,7 @@ export function useRegisterUser () {
         }
 
         if (!checkbox) {
-            setMessageError('Para continuar, aceite nossos termos!')
+            setMessageError('Para continuar, aceite os nossos termos!')
             return;
         }
 

@@ -90,7 +90,7 @@ export default function Register () {
           {messageError && (
             <Subtitle
             subtitle={messageError}
-            extraClass="text-red-500 text-xs !font-normal"
+            extraClass="text-red-500 text-xs !font-normal text-center"
             />
           )}
 

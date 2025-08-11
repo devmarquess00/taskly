@@ -9,10 +9,16 @@ export function useLoginUser () {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [messageError, setMessageError] = useState('')
     const [isLoading, setIsLoading] = useState(false);
 
     async function handleLoginUser (event: FormEvent) {
         event.preventDefault();
+
+        if (!email || !password) {
+            setMessageError('Por favor, preencha todos os dados.');
+            return;
+        }
 
         await signInWithEmailAndPassword(auth, email, password)
         .then(() => {
@@ -35,6 +41,8 @@ export function useLoginUser () {
         password,
         setPassword,
         isLoading,
+        messageError,
+        setMessageError,
         handleLoginUser
     }
 }

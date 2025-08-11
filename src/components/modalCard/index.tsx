@@ -2,10 +2,10 @@
 import { FaXmark } from "react-icons/fa6";
 import { Title } from "../title";
 import { Button } from "../button";
-import { useServicesModal } from "@/hooks/useServicesModal";
 import { Input } from "../input";
 import { Subtitle } from "../subtitle";
 import { Cookies } from "../cookies";
+import { useAddCardDatabase } from "@/hooks/useAddCardDatabase";
 
 type ModalCardProps = {
   isShowModal?: boolean;
@@ -14,7 +14,14 @@ type ModalCardProps = {
 
 export const ModalCard = ({ isShowModal, isRemoveModal }: ModalCardProps) => {
 
-  const { colors, handleColorCard, colorCard } = useServicesModal();
+  const {
+    titleCard,
+    setTitleCard,
+    handleCreateCard,
+    colors,
+    colorCard,
+    handleColorCard
+  } = useAddCardDatabase();
 
   return (
     <>
@@ -25,6 +32,7 @@ export const ModalCard = ({ isShowModal, isRemoveModal }: ModalCardProps) => {
             <Button
               label={<FaXmark className="text-white" />}
               onClick={isRemoveModal}
+              type="button"
               extraClass="hover:bg-zinc-800 duration-300 p-1.5 rounded-full"
             />
           </div>
@@ -61,14 +69,18 @@ export const ModalCard = ({ isShowModal, isRemoveModal }: ModalCardProps) => {
             extraClass="border border-gray-400 rounded-sm text-white"
             label="Titulo do Quadro"
             placeholder="Titulo do quadro..."
+            value={titleCard}
+            onChange={(event) => setTitleCard(event.target.value)}
             />
             <Subtitle
             subtitle="Ao criar o card ele ficará salvo em 'Criados recentemente'. Para verificar as tarefas dentro dele clique no ícone de olho que está localizado no card."
             extraClass="!font-normal leading-4 text-gray-400 text-start text-xs mt-4 mb-3"
             />
             <Button
+            type="button"
             label="Criar"
             extraClass="w-full bg-zinc-950/35 hover:bg-zinc-950/30 duration-600 py-2 rounded-sm text-white text-center flex items-center justify-center text-sm"
+            onClick={handleCreateCard}
             />
             <Cookies
             label="Ao criar o template você concorda com nossa"

@@ -18,6 +18,8 @@ export default function Login () {
     password,
     setPassword,
     isLoading,
+    messageError,
+    setMessageError,
     handleLoginUser
   } = useLoginUser();
 
@@ -50,7 +52,10 @@ export default function Login () {
           label="E-mail"
           extraClass="border border-zinc-500 rounded-sm focus:border-blue-600"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={(event) => {
+            setEmail(event.target.value)
+            setMessageError("")
+          }}
           />
 
           <InputPassword
@@ -61,7 +66,10 @@ export default function Login () {
           label="Senha"
           extraClass="border border-zinc-500 rounded-sm focus:border-blue-600"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={(event) => {
+            setPassword(event.target.value)
+            setMessageError("")
+          }}
           />
 
           <Button
@@ -70,6 +78,13 @@ export default function Login () {
           extraClass="bg-blue-600 py-2 px-3 rounded-sm text-white text-sm mt-2"
           isLoading={isLoading}
           />
+
+          {messageError && (
+            <Subtitle 
+            subtitle={messageError}
+            extraClass="text-red-500 text-xs !font-normal text-center"
+            />
+          )}
 
         </div>
 
