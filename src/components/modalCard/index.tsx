@@ -20,7 +20,9 @@ export const ModalCard = ({ isShowModal, isRemoveModal }: ModalCardProps) => {
     handleCreateCard,
     colors,
     colorCard,
-    handleColorCard
+    handleColorCard,
+    messageError,
+    setMessageError
   } = useAddCardDatabase();
 
   return (
@@ -38,10 +40,10 @@ export const ModalCard = ({ isShowModal, isRemoveModal }: ModalCardProps) => {
           </div>
 
           <div className="mt-5">
-            <div className="w-full p-10 rounded-t-lg bg-gray-700" style={{ backgroundColor: colorCard }}></div>
+            <div className="w-full p-10 rounded-t-lg bg-gray-700" style={{ backgroundColor: colorCard || '#fff' }}></div>
             <div className="bg-gray-950/50 rounded-b-lg py-2 px-2">
               <Title
-                title="Segunda-feira"
+                title={titleCard || 'Segunda-feira'} 
                 extraClass="text-white text-xs !font-light"
               />
             </div>
@@ -70,11 +72,29 @@ export const ModalCard = ({ isShowModal, isRemoveModal }: ModalCardProps) => {
             label="Titulo do Quadro"
             placeholder="Titulo do quadro..."
             value={titleCard}
-            onChange={(event) => setTitleCard(event.target.value)}
+            onChange={(event) => {
+              const valueInput = event.target.value;
+
+              if (valueInput.length === 16 ) {
+                setMessageError('Máximo de 16 caracteres!')
+                return;
+              } else {
+                setTitleCard(valueInput);
+                setMessageError('')
+              }
+            }}
             />
+
+            {messageError && (
+              <Subtitle
+              subtitle={messageError}
+              extraClass="text-xs text-red-700 mt-1.5 !font-normal"
+              />
+            )}
+
             <Subtitle
             subtitle="Ao criar o card ele ficará salvo em 'Criados recentemente'. Para verificar as tarefas dentro dele clique no ícone de olho que está localizado no card."
-            extraClass="!font-normal leading-4 text-gray-400 text-start text-xs mt-4 mb-3"
+            extraClass="!font-normal leading-4 text-gray-400 text-start text-xs mt-2 mb-3"
             />
             <Button
             type="button"

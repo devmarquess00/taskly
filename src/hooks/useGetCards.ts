@@ -1,36 +1,35 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "@/services/firebaseConnection";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
 type CardProps = {
+  id?: string | number;
   titleCard?: string;
   colorCard?: string;
 };
 
 export function useGetCards() {
   const [cardsTasks, setCardsTasks] = useState<CardProps[]>([]);
-  let listCards: CardProps[] = [];
 
-  async function fetchCards() {
-    getDocs(collection(db, "cards"))
-      .then((snapshot) => {
-        snapshot.forEach((card) => {
-          listCards.push({
-            titleCard: card.data()?.titleCard,
-            colorCard: card.data()?.colorCard,
-          });
-        });
+    useEffect(() => {
+      const cardsRef = collection(db, "cards");
+      const order = query(cardsRef, orderBy("createdAt", "desc"));
+    
+      const unsubscribe = onSnapshot(order, (snapshot) => {
+        let listCards: CardProps[] = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          titleCard: doc.data().titleCard,
+          colorCard: doc.data().colorCard,
+        }));
 
         setCardsTasks(listCards);
-      })
-      .catch((error) => {
-        console.log(error);
       });
-  }
+
+      return () => unsubscribe();
+    }, []);
 
   return {
     cardsTasks,
-    fetchCards,
   };
 }
