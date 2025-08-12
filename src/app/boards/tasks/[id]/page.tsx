@@ -6,11 +6,18 @@ import { Subtitle } from "@/components/subtitle";
 import { Title } from "@/components/title";
 import { useAddTasks } from "@/hooks/useAddTasks";
 import { tasksCard } from "@/menus/tasksCard";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaXmark } from "react-icons/fa6";
 
 export default function Tasks ({cardId}: { cardId: string }) {
 
-    const { newTaskTitle, handleShowInput, showInput, setNewTaskTitle } = useAddTasks(cardId);
+    const { newTaskTitle,
+    handleShowInput, 
+    showInput, 
+    setNewTaskTitle, 
+    handleShowMoreInfos, 
+    showMoreInfos,
+    handleRemoveMoreInfos
+} = useAddTasks(cardId);
 
     return (
         <div className="bg-zinc-800 h-screen w-full">
@@ -23,12 +30,35 @@ export default function Tasks ({cardId}: { cardId: string }) {
                         const Icon = item.icon;
                         return (
                             <div key={item.id} className="bg-zinc-900 py-4 px-6 w-[18rem] rounded-lg flex flex-col">
-                                <div className="flex items-center justify-between">
+                                <div className="flex items-center justify-between relative">
                                     <Title
                                     title={item.title}
                                     extraClass="text-white text-sm"
                                     />
-                                    <Icon className="text-white" />
+                                    <Button
+                                    type="button"
+                                    extraClass="hover:bg-zinc-700 rounded-full duration-400 p-1"
+                                    onClick={() => handleShowMoreInfos(item.id.toString())}
+                                    label={<Icon className="text-white" />}
+                                    />
+
+                                    {showMoreInfos === item.id.toString() && (
+                                        <div className="absolute -right-12 md:-right-22 top-8 bg-zinc-800 p-4 rounded-md border 
+                                        border-gray-600 w-[15rem]">
+                                            <div className="flex items-center justify-between">
+                                                <Subtitle
+                                                subtitle="Ações da Lista"
+                                                extraClass="text-xs text-white !font-normal"
+                                                />
+                                                <Button
+                                                type="button"
+                                                extraClass="hover:bg-zinc-700 rounded-full duration-400 p-1 text-white"
+                                                onClick={handleRemoveMoreInfos}
+                                                label={<FaXmark />}
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="flex items-center justify-start gap-1 !bg-zinc-800 py-2.5 px-2 rounded-lg mt-5">
