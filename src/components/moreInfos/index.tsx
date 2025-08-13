@@ -10,7 +10,7 @@ export const MoreInfos = ({
     onClickMoreInfos
 }: MoreInfos) => {
   return (
-    <div className="absolute -right-8 md:-right-22 top-8 bg-zinc-800 p-4 rounded-md border border-gray-600 w-[15rem]">
+    <div className="z-200 absolute -right-8 md:-right-22 top-8 bg-zinc-800 p-4 rounded-md border border-gray-600 w-[15rem]">
       <div className="flex items-center justify-between">
         <Subtitle
           subtitle="Ações da Lista"

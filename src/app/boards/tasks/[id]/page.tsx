@@ -11,6 +11,7 @@ import { useAddTasks } from "@/hooks/useAddTasks";
 import { tasksCard } from "@/menus/tasksCard";
 import { FaArrowLeft, FaPlus, FaTrash, FaXmark } from "react-icons/fa6";
 import { MoreInfos } from '@/components/moreInfos';
+import { Textarea } from '@/components/textarea';
 
 export default function Tasks() {
     const params = useParams();
@@ -78,32 +79,30 @@ export default function Tasks() {
                   .map((task) => (
                     <div
                       key={task.id}
-                      className="flex justify-between items-center bg-zinc-800 py-2.5 px-2 rounded-lg mt-2"
+                      className="relative flex justify-between items-center bg-zinc-800 py-2.5 px-2 rounded-lg mt-2 mb-2 md:mb-3"
                     >
-                      <div className='flex gap-3'>
-                        <Input type="radio" extraClass="mb-1 p-3" />
+                      <div className='flex'>
                         <Subtitle
                         subtitle={task.title}
-                        extraClass="text-sm text-gray-300 !font-normal leading-4"
+                        extraClass="text-xs text-gray-300 !font-normal leading-4 px-1 md:py-2 md:px-2.5"
+                        />
+                        <Button
+                        type="button"
+                        extraClass='text-white text-sm absolute -top-4 -right-3 m-2 !bg-zinc-700 p-1 md:p-1.5 rounded-full' 
+                        icon={<FaTrash />}
+                        onClick={() => handleDeleteTask(task.id)}
                         />
                       </div>
-                      <Button
-                      type="button"
-                      extraClass='text-white text-sm' 
-                      icon={<FaTrash />}
-                      onClick={() => handleDeleteTask(task.id)}
-                      />
                     </div>
                   ))}
 
                 {showInput === columnId ? (
                   <div className="flex flex-col justify-center">
-                    <Input
-                      type="text"
-                      value={newTaskTitle}
-                      extraClass="border-1 border-gray-400 p-2 mt-3 rounded-sm text-white"
-                      onChange={(event) => setNewTaskTitle(event.target.value)}
-                      placeholder='Digite sua nova tarefa aqui...'
+                    <Textarea
+                    value={newTaskTitle}
+                    onChange={(event) => setNewTaskTitle(event.target.value)}
+                    extraClass='border-1 border-gray-400 p-4 mt-1 md:mt-0 rounded-sm text-white text-xs md:text-sm'
+                    placeholder='Digite sua nova tarefa aqui...'
                     />
                     <div className='flex items-center gap-2'>
                         <Button

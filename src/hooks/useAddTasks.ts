@@ -43,12 +43,12 @@ export function useAddTasks (cardId: string) {
         }
     }
 
-    const handleDeleteTask = async (columnId: string) => {
+    const handleDeleteTask = async (id: string) => {
         try {
-            const docRef = doc(db, "tasks", columnId);
+            const docRef = doc(db, "tasks", id);
             await deleteDoc(docRef);
             fetchTasks();
-            
+
         } catch (error) {
             console.log(error)
         }
