@@ -1,6 +1,6 @@
 'use client'
 import { useCallback, useState } from 'react';
-import { addDoc, collection, getDocs, query, Timestamp, where } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, Timestamp, where, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '@/services/firebaseConnection';
 
 export function useAddTasks (cardId: string) {
@@ -43,6 +43,17 @@ export function useAddTasks (cardId: string) {
         }
     }
 
+    const handleDeleteTask = async (columnId: string) => {
+        try {
+            const docRef = doc(db, "tasks", columnId);
+            await deleteDoc(docRef);
+            fetchTasks();
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const fetchTasks = useCallback(async() => {
         try {
             const q = query(collection(db, "tasks"), where("cardId", "==", cardId));
@@ -70,6 +81,7 @@ export function useAddTasks (cardId: string) {
         handleShowMoreInfos,
         handleRemoveMoreInfos,
         handleAddTask,
-        fetchTasks
+        fetchTasks,
+        handleDeleteTask
     }
 }

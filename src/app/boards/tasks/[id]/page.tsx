@@ -32,6 +32,7 @@ export default function Tasks() {
     fetchTasks,
     handleAddTask,
     tasks,
+    handleDeleteTask
   } = useAddTasks(cardId);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function Tasks() {
             return (
               <div
                 key={columnId}
-                className="bg-zinc-900 py-4 px-4 w-full rounded-lg flex flex-col"
+                className="bg-zinc-900 py-4 px-4 w-full md:w-[80vh] 2xl:w-[50vh] rounded-lg flex flex-col"
               >
                 <div className="flex items-center justify-between relative mb-3 border-b border-gray-500 pb-3">
                   <Title
@@ -79,7 +80,7 @@ export default function Tasks() {
                       key={task.id}
                       className="flex justify-between items-center bg-zinc-800 py-2.5 px-2 rounded-lg mt-2"
                     >
-                      <div className='flex gap-1'>
+                      <div className='flex gap-3'>
                         <Input type="radio" extraClass="mb-1 p-3" />
                         <Subtitle
                         subtitle={task.title}
@@ -90,6 +91,7 @@ export default function Tasks() {
                       type="button"
                       extraClass='text-white text-sm' 
                       icon={<FaTrash />}
+                      onClick={() => handleDeleteTask(task.id)}
                       />
                     </div>
                   ))}
