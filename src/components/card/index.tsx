@@ -3,7 +3,7 @@ import { Button } from "../button";
 import Link from "next/link";
 
 type CardProps = {
-    id?: string | number;
+    id?: string | number  | any;
     titleCard?: string;
     colorCard?: any;
     extraClassTitleCard?: string;

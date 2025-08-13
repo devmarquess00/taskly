@@ -6,14 +6,4 @@ export const tasksCard = [
         title: 'A fazer',
         icon: FaEllipsis,
     },
-    {
-        id: 2,
-        title: 'Em andamento',
-        icon: FaEllipsis,
-    },
-    {
-        id: 3, 
-        title: 'Conclúido',
-        icon: FaEllipsis
-    }
 ]
