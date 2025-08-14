@@ -14,7 +14,7 @@ export const Textarea = ({
     return (
         <textarea 
         placeholder={placeholder}
-        className={extraClass}
+        className={`outline-blue-400 ${extraClass}`}
         onChange={onChange}
         value={value}
         />

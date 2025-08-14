@@ -2,7 +2,7 @@ export const menuHeader = [
     {
         id: 1,
         label: 'Criar minha tarefa',
-        url: ''
+        url: '/boards'
     },
     {
         id: 2,

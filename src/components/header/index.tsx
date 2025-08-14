@@ -18,7 +18,7 @@ export const Header = ({
             <div className='flex items-center gap-2'>
                 <div className="bg-blue-600 p-2 rounded-md 2xl:p-3">
                     <FaClipboardList 
-                    className="text-white text-lg text-2xl 2xl:text-3xl"
+                    className="text-white text-lg md:text-2xl 2xl:text-3xl"
                     />
                 </div>
                 <Title
@@ -27,7 +27,9 @@ export const Header = ({
                 />
                 <ul className='hidden md:flex items-center gap-5'>
                     {menuHeader.map((item) => (
-                        <li key={item.id} className='text-sm text-gray-800/60 hover:text-gray-800/100 duration-500 cursor-pointer 2xl:text-lg'>{item.label}</li>
+                        <li key={item.id} className='text-sm text-gray-800/60 hover:text-gray-800/100 duration-500 cursor-pointer 2xl:text-lg'>
+                            <a href={item.url}>{item.label}</a>
+                        </li>
                     ))}
                 </ul>
             </div>

@@ -17,8 +17,10 @@ export const Sidebar = ({
                     <ul className='flex flex-col gap-2 mt-5'>
                         {menuHeader.map((item) => (
                             <li key={item.id} className='flex items-center justify-between py-4 border-b w-full border-gray-200'>
-                                <p>{item.label}</p>
-                                <FaChevronRight />
+                                <a href={item.url} className='w-full flex items-center justify-between'>
+                                    <p>{item.label}</p>
+                                    <FaChevronRight />
+                                </a>
                             </li>
                         ))}
                     </ul>

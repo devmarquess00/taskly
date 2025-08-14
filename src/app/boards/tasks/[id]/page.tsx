@@ -12,6 +12,7 @@ import { tasksCard } from "@/menus/tasksCard";
 import { FaArrowLeft, FaPlus, FaTrash, FaShare } from "react-icons/fa6";
 import { MoreInfos } from '@/components/moreInfos';
 import { Textarea } from '@/components/textarea';
+import ProtectedRoute from '@/components/protectedRoute';
 
 export default function Tasks() {
     const params = useParams();
@@ -41,7 +42,8 @@ export default function Tasks() {
   }, [fetchTasks]);
 
   return (
-    <div className="bg-white h-screen w-full">
+    <ProtectedRoute>
+      <div className="bg-white h-screen w-full">
       <HeaderTasks />
 
       <div className="px-10 py-5 flex justify-center w-full">
@@ -134,5 +136,6 @@ export default function Tasks() {
         </div>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }
