@@ -9,7 +9,7 @@ import { Subtitle } from "@/components/subtitle";
 import { Title } from "@/components/title";
 import { useAddTasks } from "@/hooks/useAddTasks";
 import { tasksCard } from "@/menus/tasksCard";
-import { FaArrowLeft, FaPlus, FaTrash, FaXmark } from "react-icons/fa6";
+import { FaArrowLeft, FaPlus, FaTrash, FaShare } from "react-icons/fa6";
 import { MoreInfos } from '@/components/moreInfos';
 import { Textarea } from '@/components/textarea';
 
@@ -113,9 +113,9 @@ export default function Tasks() {
                         />
                         <Button
                         type="button"
-                        label="Cancelar"
+                        label={<FaShare className='rotate-180' />}
                         onClick={handleRemoveInput}
-                        extraClass='bg-red-600 text-white mt-2 py-1 px-2 md:py-2 md:px-3 lg:py-2 lg:px-3 rounded-sm text-xs'
+                        extraClass='flex items-center justify-center bg-red-600 w-[3rem] rounded-sm px-2 py-1 md:py-2 md:px-3 lg:py-2 lg:px-3 mt-2 text-white'
                         />
                     </div>
                   </div>
