@@ -41,7 +41,7 @@ export default function Tasks() {
   }, [fetchTasks]);
 
   return (
-    <div className="bg-zinc-800 h-screen w-full">
+    <div className="bg-white h-screen w-full">
       <HeaderTasks />
 
       <div className="px-10 py-5 flex justify-center w-full">
@@ -53,18 +53,18 @@ export default function Tasks() {
             return (
               <div
                 key={columnId}
-                className="bg-zinc-900 py-4 px-4 w-full md:w-[80vh] 2xl:w-[50vh] rounded-lg flex flex-col"
+                className="bg-white shadow-lg border border-gray-300 py-4 px-4 w-full md:w-[80vh] 2xl:w-[50vh] rounded-lg flex flex-col"
               >
                 <div className="flex items-center justify-between relative mb-3 border-b border-gray-500 pb-3">
                   <Title
                     title={item.title}
-                    extraClass="text-white text-sm"
+                    extraClass="text-zinc-800 text-sm lg:text-lg"
                   />
                   <Button
                     type="button"
-                    extraClass="hover:bg-zinc-700 rounded-full duration-400 p-1"
+                    extraClass="hover:bg-blue-600 hover:text-white text-zinc-800 rounded-full duration-400 p-1"
                     onClick={() => handleShowMoreInfos(columnId)}
-                    label={<Icon className="text-white" />}
+                    label={<Icon />}
                   />
 
                   {showMoreInfos === columnId && (
@@ -79,17 +79,17 @@ export default function Tasks() {
                   .map((task) => (
                     <div
                       key={task.id}
-                      className="relative flex justify-between items-center bg-zinc-800 py-2.5 px-2 rounded-lg mt-2 mb-2 md:mb-3"
+                      className="relative flex justify-between items-center bg-white border border-gray-400 py-2.5 px-2 rounded-lg mt-2 mb-2 md:mb-3"
                     >
                       <div className='flex'>
                         <Subtitle
                         subtitle={task.title}
-                        extraClass="text-xs text-gray-300 !font-normal leading-4 px-1 md:py-2 md:px-2.5"
+                        extraClass="text-xs text-zinc-800 !font-normal leading-4 px-1 md:py-2 md:px-2.5"
                         />
                         <Button
                         type="button"
-                        extraClass='text-white text-sm absolute -top-4 -right-3 m-2 !bg-zinc-700 p-1 md:p-1.5 rounded-full' 
-                        icon={<FaTrash />}
+                        extraClass='text-white text-sm absolute -top-4 -right-3 m-2 !bg-blue-600 p-1.5 md:p-2 rounded-full' 
+                        icon={<FaTrash className='text-xs md:text-base' />}
                         onClick={() => handleDeleteTask(task.id)}
                         />
                       </div>
@@ -101,21 +101,21 @@ export default function Tasks() {
                     <Textarea
                     value={newTaskTitle}
                     onChange={(event) => setNewTaskTitle(event.target.value)}
-                    extraClass='border-1 border-gray-400 p-4 mt-1 md:mt-0 rounded-sm text-white text-xs md:text-sm'
+                    extraClass='border-1 border-gray-400 p-4 mt-1 md:mt-0 rounded-sm text-zinc-800 text-xs md:text-sm'
                     placeholder='Digite sua nova tarefa aqui...'
                     />
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-center gap-1'>
                         <Button
                         type="button"
                         icon={<FaPlus />}
                         onClick={() => handleAddTask(columnId)}
-                        extraClass="flex items-center justify-center bg-blue-600 w-[3rem] rounded-sm px-2 py-1 mt-2 text-white"
+                        extraClass="flex items-center justify-center bg-blue-600 w-[3rem] rounded-sm px-2 py-1 md:py-2 md:px-3 lg:py-2 lg:px-3 mt-2 text-white"
                         />
                         <Button
                         type="button"
                         label="Cancelar"
                         onClick={handleRemoveInput}
-                        extraClass='bg-red-600 text-white mt-2 py-1 px-2 rounded-sm text-xs'
+                        extraClass='bg-red-600 text-white mt-2 py-1 px-2 md:py-2 md:px-3 lg:py-2 lg:px-3 rounded-sm text-xs'
                         />
                     </div>
                   </div>

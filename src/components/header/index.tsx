@@ -32,6 +32,7 @@ export const Header = ({
                 </ul>
             </div>
             <Button
+            type='button'
             onClick={onToggleSidebar} 
             extraClass='text-xl text-gray-600 md:hidden'
             label={sidebarIsOpen ? <FaXmark /> : <FaBars />}
