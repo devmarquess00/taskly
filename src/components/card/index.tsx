@@ -1,4 +1,4 @@
-import { FaEye } from "react-icons/fa6";
+import { FaEye, FaTrash } from "react-icons/fa6";
 import { Button } from "../button";
 import Link from "next/link";
 
@@ -7,6 +7,7 @@ type CardProps = {
     titleCard?: string;
     colorCard?: any;
     extraClassTitleCard?: string;
+    onClickDeleteButton?: () => void;
 }
 
 export const Card = ({
@@ -14,13 +15,20 @@ export const Card = ({
     titleCard,
     colorCard,
     extraClassTitleCard,
+    onClickDeleteButton,
 }: CardProps) => {
     return (
-        <div className='w-full'>
-            <div className="bg-gray-700 w-full p-8 md:p-10 rounded-t-lg"
+        <div className='w-full relative'>
+            <div className="w-full p-8 md:p-12 2xl:p-14 rounded-t-lg"
             style={colorCard}
             ></div>
-            <div className="flex items-center justify-between py-2 px-3 rounded-b-lg bg-gray-950/50">
+            <Button
+            type="button"
+            icon={<FaTrash />}
+            onClick={onClickDeleteButton}
+            extraClass="absolute top-0 right-0 m-2 text-white"
+            />
+            <div className="flex items-center justify-between py-2 px-3 md:py-5 rounded-b-lg bg-gray-950">
                 <p className={extraClassTitleCard}>{titleCard}</p>
                 <Link href={`/boards/tasks/${id}`}>
                     <Button

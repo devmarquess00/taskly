@@ -28,20 +28,20 @@ export const ModalCard = ({ isShowModal, isRemoveModal }: ModalCardProps) => {
   return (
     <>
       {isShowModal && (
-        <div className="bg-zinc-900 w-xs fixed right-0 mt-3 mr-2 py-3 px-6 rounded-md">
+        <div className="z-200 bg-white shadow-md w-xs fixed right-0 -mt-5 md:-mt-15 md:right-7 mr-2 py-3 px-6 rounded-md">
           <div className="flex items-center justify-between">
-            <Title title="Criar novo quadro" extraClass="text-white text-sm" />
+            <Title title="Criar novo quadro" extraClass="text-zinc-800 text-sm" />
             <Button
-              label={<FaXmark className="text-white" />}
+              label={<FaXmark className="text-zinc-800 hover:text-white" />}
               onClick={isRemoveModal}
               type="button"
-              extraClass="hover:bg-zinc-800 duration-300 p-1.5 rounded-full"
+              extraClass="hover:bg-blue-600 hover:!text-white duration-300 p-1.5 rounded-full"
             />
           </div>
 
           <div className="mt-5">
-            <div className="w-full p-10 rounded-t-lg bg-gray-700" style={{ backgroundColor: colorCard || '#fff' }}></div>
-            <div className="bg-gray-950/50 rounded-b-lg py-2 px-2">
+            <div className="w-full p-10 rounded-t-lg bg-gray-700" style={{ backgroundColor: colorCard || '#4169E1' }}></div>
+            <div className="bg-gray-950 rounded-b-lg py-2 px-2">
               <Title
                 title={titleCard || 'Segunda-feira'} 
                 extraClass="text-white text-xs !font-light"
@@ -68,7 +68,7 @@ export const ModalCard = ({ isShowModal, isRemoveModal }: ModalCardProps) => {
             <Input
             type="text"
             extraClassLabel="!text-gray-400 text-sm font-semibold mb-1 mt-4"
-            extraClass="border border-gray-400 rounded-sm text-white"
+            extraClass="border border-gray-400 rounded-sm text-black"
             label="Titulo do Quadro"
             placeholder="Titulo do quadro..."
             value={titleCard}
@@ -99,7 +99,7 @@ export const ModalCard = ({ isShowModal, isRemoveModal }: ModalCardProps) => {
             <Button
             type="button"
             label="Criar"
-            extraClass="w-full bg-zinc-950/35 hover:bg-zinc-950/30 duration-600 py-2 rounded-sm text-white text-center flex items-center justify-center text-sm"
+            extraClass="w-full bg-blue-600 hover:bg-blue-700 duration-600 py-2 rounded-sm text-white text-center flex items-center justify-center text-sm"
             onClick={handleCreateCard}
             />
             <Cookies

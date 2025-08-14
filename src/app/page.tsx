@@ -40,6 +40,7 @@ export default function Home () {
           />
           <Link href="/login">
             <Button
+            type="button"
             label="Faça inscrição. É gratuito"
             extraClass="flex items-center justify-center bg-blue-600 py-3 px-3 mb-5 mt-3 md:mb-0 md:px-0 rounded-sm text-white w-full text-sm mt-2 py-3.5 md:!w-[15rem] !md:text-center md:flex md:items-center md:justify-center"
             />

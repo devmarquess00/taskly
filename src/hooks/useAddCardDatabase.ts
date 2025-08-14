@@ -12,7 +12,7 @@ export function useAddCardDatabase () {
     const [colorCard, setColorCard] = useState('')
     const [messageError, setMessageError] = useState('')
 
-    const colors = ["#ffffff", "#000000", "#333333", "#dfdfdf", "#2563EB", "#DC2626"];
+    const colors = ["#4169E1", "#10B981", "#FF4500", "#9370DB", "#FFD6A5"];
 
     const handleColorCard = useCallback((color: string) => {
         setColorCard(color)
